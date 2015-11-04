@@ -27,12 +27,14 @@ class ViewController: UIViewController {
         let horizontalEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: UIInterpolatingMotionEffectType.TiltAlongHorizontalAxis)
         horizontalEffect.maximumRelativeValue = NSNumber(double: depth)
         horizontalEffect.minimumRelativeValue = NSNumber(double: -depth)
-        view.addMotionEffect(horizontalEffect)
         
         let verticalEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: UIInterpolatingMotionEffectType.TiltAlongVerticalAxis)
         verticalEffect.maximumRelativeValue = NSNumber(double: depth)
         verticalEffect.minimumRelativeValue = NSNumber(double: -depth)
-        view.addMotionEffect(verticalEffect)
+        
+        let group = UIMotionEffectGroup()
+        group.motionEffects = [horizontalEffect, verticalEffect];
+        view.addMotionEffect(group)
     }
 
 }
